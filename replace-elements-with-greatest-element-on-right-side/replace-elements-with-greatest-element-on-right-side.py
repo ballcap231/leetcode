@@ -1,6 +1,7 @@
 from collections import deque
 class Solution:
     def replaceElements(self, arr: List[int]) -> List[int]:
+        #O(N) time and O(1) space
         new_ls = deque()
         l_arr = len(arr)
         max_val = -float('inf')
