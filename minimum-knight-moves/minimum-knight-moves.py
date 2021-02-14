@@ -1,26 +1,33 @@
 from collections import deque
-import itertools
 class Solution:
     def minKnightMoves(self, x: int, y: int) -> int:
-#         if not x and not y:
-#             return 0
-#         p_1,p_2 = [1,-1],[2,-2]
-#         paths = list(itertools.product(p_1,p_2)) + list(itertools.product(p_2,p_1))
-#         self.Q = deque([(xx, 1) for xx in paths])
+        #O(|x| * |y|) time and O(|x| * |y|) space
+        if not x and not y:
+            return 0
+        x,y = abs(x),abs(y)
+        paths = [(1,2),(2,1),(1,-2),(2,-1),(-1,2),(-2,1)]
+        Q = deque([(xx, 1) for xx in paths])
+        visited = set([(0,0)])
         
-#         while self.Q:
-#             curr,jumps = self.Q.popleft()
-#             if curr[0] == x and curr[1] == y:
-#                 return jumps
-#             for path in paths:
-#                 self.Q.append(((curr[0] + path[0], curr[1] + path[1]),jumps + 1))
+        while Q:
+            curr,jumps = Q.popleft()
+            if curr[0] == x and curr[1] == y:
+                return jumps
+            for path in paths:
+                new_x = curr[0] + path[0]
+                new_y = curr[1] + path[1]
+                new_pos = (new_x,new_y)
+                if new_pos not in visited and -2 <= new_x <= x+2 and -2 <= new_y <= y+2:
+                    Q.append((new_pos,jumps + 1))
+                    visited.add(new_pos)
 
-        @lru_cache(None) 
-        def dp(x,y):
-            if x + y == 0: return 0
-            elif x + y == 2: return 2
-            elif x + y == 1: return 3
-            return min(dp(abs(x-1),abs(y-2)), dp(abs(x-2),abs(y-1))) + 1
-        return dp(abs(x),abs(y))
+    
+        # @lru_cache(None) 
+        # def dp(x,y):
+        #     if x + y == 0: return 0
+        #     elif x + y == 2: return 2
+        #     elif x + y == 1: return 3
+        #     return min(dp(abs(x-1),abs(y-2)), dp(abs(x-2),abs(y-1))) + 1
+        # return dp(abs(x),abs(y))
                 
             
