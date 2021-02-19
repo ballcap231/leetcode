@@ -1,3 +1,4 @@
+[Discussion Post (created on 18/1/2021 at 22:6)](https://leetcode.com/problems/wiggle-sort/solution/)  
 <h2>280. Wiggle Sort</h2><h3>Medium</h3><hr><div><p>Given an unsorted array <code>nums</code>, reorder it <b>in-place</b> such that <code>nums[0] &lt;= nums[1] &gt;= nums[2] &lt;= nums[3]...</code>.</p>
 
 <p><b>Example:</b></p>
