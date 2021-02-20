@@ -1,3 +1,4 @@
+[Discussion Post (created on 20/1/2021 at 9:35)](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/discuss/?currentPage=1&orderBy=hot&query=)  
 <h2>714. Best Time to Buy and Sell Stock with Transaction Fee</h2><h3>Medium</h3><hr><div><p>Your are given an array of integers <code>prices</code>, for which the <code>i</code>-th element is the price of a given stock on day <code>i</code>; and a non-negative integer <code>fee</code> representing a transaction fee.</p>
 <p>You may complete as many transactions as you like, but you need to pay the transaction fee for each transaction.  You may not buy more than 1 share of a stock at a time (ie. you must sell the stock share before you buy again.)</p>
 <p>Return the maximum profit you can make.</p>
