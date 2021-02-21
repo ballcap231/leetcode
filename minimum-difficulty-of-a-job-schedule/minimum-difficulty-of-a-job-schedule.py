@@ -1,5 +1,7 @@
 class Solution:
     def minDifficulty(self, jobDifficulty: List[int], d: int) -> int:
+        #O(|jobDifficulty| * |jobDifficulty| * d) time and O(|jobDifficulty| * d) space
+        #Recursion + memoization
         if d > len(jobDifficulty):
             return -1
         
@@ -8,8 +10,6 @@ class Solution:
         
         @lru_cache(maxsize = None)
         def recurse(start, day):
-            if day == 0 or start >= l:
-                return 0
             if day == 1:
                 return max(jobDifficulty[start:])
             day_max = 0
@@ -19,7 +19,5 @@ class Solution:
                 min_diff = min(min_diff, day_max + recurse(pos + 1, day - 1))
 
             return min_diff
-            
-            
         return recurse(0, d)
     
