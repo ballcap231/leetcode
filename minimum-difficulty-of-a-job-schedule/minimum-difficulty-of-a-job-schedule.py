@@ -1,19 +1,25 @@
 class Solution:
     def minDifficulty(self, jobDifficulty: List[int], d: int) -> int:
-        n = len(jobDifficulty)
+        if d > len(jobDifficulty):
+            return -1
         
-        @lru_cache(None)
-        def helper(index, day):
-            if n - index < d - day + 1:
-                return -1
-            if day == d:
-                return max(jobDifficulty[index:])
-            difficulty = float('inf')
-            current =  0
-            for i in range(index, n - d + day + 1):
-                current = max(current, jobDifficulty[i])
-                next_day = helper(i + 1, day + 1)
-                if next_day != -1:
-                    difficulty = min(difficulty, current + next_day) 
-            return difficulty          
-        return helper(0, 1)
+        min_diff = 0
+        l = len(jobDifficulty)
+        
+        @lru_cache(maxsize = None)
+        def recurse(start, day):
+            if day == 0 or start >= l:
+                return 0
+            if day == 1:
+                return max(jobDifficulty[start:])
+            day_max = 0
+            min_diff = float('inf')
+            for pos in range(start, l - day + 1):
+                day_max = max(jobDifficulty[pos], day_max)
+                min_diff = min(min_diff, day_max + recurse(pos + 1, day - 1))
+
+            return min_diff
+            
+            
+        return recurse(0, d)
+    
