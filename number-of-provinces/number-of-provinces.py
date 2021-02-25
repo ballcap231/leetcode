@@ -1,6 +1,6 @@
 class Solution:
     def findCircleNum(self, isConnected: List[List[int]]) -> int:
-        #O(N^2) space and O(N) time
+        #O(N^2) time and O(N) space
         #DFS
         seen = set()
         def dfs(node):
