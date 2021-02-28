@@ -19,9 +19,11 @@ class Solution:
 #         return "".join(list(test_char([],char_counts)))
 
         
-    #O(|S|) time complexity and O(1) space - since only 26 letters in alphabet
+        #O(|S|) time complexity and O(1) space - since only 26 letters in alphabet
         counts = Counter(S)
         max_freq = counts.most_common(1)[0][1]
+        #Only way a solution wouldn't be possible is if one char
+        #has more chars than twice total chars
         if max_freq * 2 > len(S) + 1:
             return ""
         
@@ -41,9 +43,7 @@ class Solution:
                 heapq.heappush(hq,(neg_count, char))
                 if neg_count2 != -1:
                     heapq.heappush(hq, (neg_count2 + 1, char2))
-            # else:
-            #     return ""
+
         return "".join(ans)
-                    
         
     
