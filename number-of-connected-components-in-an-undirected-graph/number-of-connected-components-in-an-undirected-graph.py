@@ -1,22 +1,20 @@
 class Solution:
     def countComponents(self, n: int, edges: List[List[int]]) -> int:
-        g, cnt, seen = collections.defaultdict(set), 0, set()
-        for u, v in edges: 
-            g[u].add(v), g[v].add(u)
-
+        #O(max(n,N)) time and O(N) space where N is length of edges
+        dd = defaultdict(set)
+        seen = set()
+        for a, b in edges:
+            dd[a].add(b)
+            dd[b].add(a)
+        
         def dfs(node):
-            if node not in seen:
-                seen.add(node)
-                for nei in g[node]: dfs(nei)
+            for ii in dd[node]:
+                if ii not in seen:
+                    seen.add(ii)
+                    dfs(ii)
             return 1
-
-        def bfs(q):
-            for node in q:
-                if node not in seen:
-                    q += g[node]
-                    seen.add(node)
-                print(q)
-            return 1
-
-        return sum(dfs(i) for i in range(n) if i not in seen)
-        return sum(bfs([i]) for i in range(n) if i not in seen)        
+        
+        return sum(dfs(ii) for ii in range(n) if ii not in seen)
+            
+            
+            
