@@ -5,7 +5,9 @@
 #         self.next = next
 class Solution:
     def mergeKLists(self, lists: List[ListNode]) -> ListNode:
-        
+        #O(Nlog(k)) time
+        #where k is number of ListNodes and N is number of total nodes across all ListNodes
+        #O(1) space since we are editing in place
         interval = 1
         while interval < len(lists):
             for ii in range(0, len(lists) - interval, interval * 2):
