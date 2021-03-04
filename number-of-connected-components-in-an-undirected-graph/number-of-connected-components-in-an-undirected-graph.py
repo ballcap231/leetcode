@@ -15,7 +15,8 @@ class Solution:
                 if node not in seen:
                     q += g[node]
                     seen.add(node)
+                print(q)
             return 1
 
-        # return sum(dfs(i) for i in range(n) if i not in seen)
+        return sum(dfs(i) for i in range(n) if i not in seen)
         return sum(bfs([i]) for i in range(n) if i not in seen)        
