@@ -1,3 +1,4 @@
+[Discussion Post (created on 10/2/2021 at 12:18)](https://leetcode.com/problems/decode-ways/solution/)  
 <h2>91. Decode Ways</h2><h3>Medium</h3><hr><div><p>A message containing letters from <code>A-Z</code> can be <strong>encoded</strong> into numbers using the following mapping:</p>
 
 <pre>'A' -&gt; "1"
