@@ -1,5 +1,6 @@
 class SnakeGame:
-
+    #O(1) time
+    #O(W X H + N) space for the entire game
     def __init__(self, width: int, height: int, food: List[List[int]]):
         """
         Initialize your data structure here.
@@ -21,7 +22,6 @@ class SnakeGame:
         self.body = set()
         self.body.add((0,0))
         self.score = 0
-        print(self.body)
     def move(self, direction: str) -> int:
         """
         Moves the snake.
@@ -34,7 +34,6 @@ class SnakeGame:
         head = self.snake[-1]
         next_pos = (next_dir[0] + head[0], next_dir[1] + head[1])
         if not self.valid_pos(next_pos):
-            # print('wattt')
             return -1
         food_pos = self.food[self.next_food] if self.next_food < len(self.food) else []
         if next_pos != tuple(food_pos):
