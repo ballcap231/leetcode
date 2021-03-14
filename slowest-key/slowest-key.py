@@ -1,5 +1,6 @@
 class Solution:
     def slowestKey(self, releaseTimes: List[int], keysPressed: str) -> str:
+        #O(N) time and O(1) space
         slowest_key = keysPressed[0]
         slowest_time = releaseTimes[0]
         for prev_pos, time in enumerate(releaseTimes[1:]):
