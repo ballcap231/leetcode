@@ -1,5 +1,6 @@
 class Solution:
     def numDistinctIslands(self, grid: List[List[int]]) -> int:
+        #O(M*N) time and O(M * N) space since we are storing distinct islands
         islands = set()
         x_len,y_len = len(grid), len(grid[0])
         def check_bounds(xx,yy):
