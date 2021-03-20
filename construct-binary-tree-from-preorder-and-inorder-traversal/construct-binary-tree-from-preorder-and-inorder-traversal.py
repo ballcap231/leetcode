@@ -6,7 +6,7 @@
 #         self.right = right
 class Solution:
     def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
-        
+        #O(N) space and time
         inorder_index = {}
         
         for pos, val in enumerate(inorder):
