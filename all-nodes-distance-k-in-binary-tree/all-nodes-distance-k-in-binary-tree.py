@@ -7,27 +7,31 @@
 
 class Solution:
     def distanceK(self, root: TreeNode, target: TreeNode, K: int) -> List[int]:
-        par_maps = dict()
-        def dfs_annotate_parents(node, parent = None):
+        def add_parents(node, parent = None):
             if node:
-                par_maps[node] = parent
-                dfs_annotate_parents(node.left, node)
-                dfs_annotate_parents(node.right, node)
-            
-        dfs_annotate_parents(root)
+                node.parent = parent
+                node.dist = 0
+                add_parents(node.left, node)
+                add_parents(node.right, node)
+        add_parents(root)
         
-        dq = deque()
-        dq.append((target,0))
-        seen = {target}
-        while dq:
-            if dq[0][1] == K:
-                return [n.val for n,d in dq]
-            node, dist = dq.popleft()
-            
-            for neighbor in (node.left, node.right, par_maps[node]):
-                if neighbor and neighbor not in seen:
-                    dq.append((neighbor, dist + 1))
-                    seen.add(neighbor)
-        return []
-            
-            
+        
+        deq = deque()
+        deq.append(target)
+        ans = []
+        seen = set()
+        seen.add(target)
+        while deq:
+            curr_node = deq.popleft()
+            if curr_node.dist == K:
+                ans.append(curr_node.val)
+            else:
+                for node in (curr_node.parent, curr_node.left, curr_node.right):
+                    if node and node not in seen:
+                        node.dist = curr_node.dist + 1
+                        deq.append(node)
+                        seen.add(node)
+        return ans
+                    
+                    
+        
