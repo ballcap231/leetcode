@@ -5,6 +5,7 @@
 #         self.next = next
 class Solution:
     def swapPairs(self, node: ListNode) -> ListNode:
+        #O(N) time and O(1) space - iteratively done in-place
         fake_head = ListNode(next = node)
         head = fake_head
         curr_node = node
