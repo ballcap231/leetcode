@@ -14,12 +14,10 @@ class Solution:
         
         while n > 0:
             cells = tuple(next_day(cells))
-            
             if cells in prev_cells:
                 n -= 1
                 cycle_len = prev_cells[cells] - n
-                quot, rem = divmod(n, cycle_len)
-                n = rem
+                n %= cycle_len
                 break
             n -= 1
             prev_cells[cells] = n
