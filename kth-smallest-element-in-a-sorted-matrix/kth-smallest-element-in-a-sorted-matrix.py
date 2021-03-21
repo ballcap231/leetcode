@@ -1,12 +1,11 @@
 import heapq
 class Solution:
     def kthSmallest(self, matrix: List[List[int]], k: int) -> int:
-        
+        #O(min(n,k)) space and O(k * log(min(n,k)) + min(n,k))
         rows = min(len(matrix), k)
         cols = len(matrix[0])
-        my_heap = []
-        for row in range(rows):
-            heapq.heappush(my_heap,(matrix[row][0],row,0))
+        my_heap = [(matrix[row][0],row,0) for row in range(rows)]
+        heapq.heapify(my_heap)
         
         count = 1
         while count < k:
@@ -17,5 +16,3 @@ class Solution:
             count += 1
             
         return heapq.heappop(my_heap)[0]
-            
-        
