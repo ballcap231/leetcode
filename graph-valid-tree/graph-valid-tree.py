@@ -8,16 +8,16 @@ class Solution:
         if len(edges) != n - 1: return False
         
         seen = {0}
-        adj_matrix = defaultdict(list)
+        adj_list = defaultdict(list)
         for e_1, e_2 in edges:
-            adj_matrix[e_1].append(e_2)
-            adj_matrix[e_2].append(e_1)
+            adj_list[e_1].append(e_2)
+            adj_list[e_2].append(e_1)
             
         def dfs(root):
-            for node in adj_matrix[root]:
+            for node in adj_list[root]:
                 if node not in seen:
                     seen.add(node)
-                    if root in adj_matrix:
+                    if root in adj_list:
                         dfs(node)
         dfs(0)
         return len(seen) == n
