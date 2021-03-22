@@ -5,6 +5,24 @@ class Solution:
         #edges in a graph must be equal to n - 1 where n is the number of
         #nodes. If there is less than n - 1, it is not fully connected,
         #if there is more than n - 1, there is a cycle.
+        
+#         if len(edges) != n - 1: return False
+#         seen = {0}
+#         adj_list = defaultdict(list)
+#         for e_1, e_2 in edges:
+#             adj_list[e_1].append(e_2)
+#             adj_list[e_2].append(e_1)
+#         def dfs(root):
+#             for node in adj_list[root]:
+#                 if node not in seen:
+#                     seen.add(node)
+#                     if root in adj_list:
+#                         dfs(node)
+#         dfs(0)
+#         return len(seen) == n
+        
+        #O(N) time and O(N) space
+        #Iterative DFS
         if len(edges) != n - 1: return False
         
         seen = {0}
@@ -13,21 +31,18 @@ class Solution:
             adj_list[e_1].append(e_2)
             adj_list[e_2].append(e_1)
             
-        def dfs(root):
+        seen = {0}
+        stack = [0]
+        
+        while stack:
+            root = stack.pop()
             for node in adj_list[root]:
                 if node not in seen:
                     seen.add(node)
-                    if root in adj_list:
-                        dfs(node)
-        dfs(0)
+                    stack.append(node)
         return len(seen) == n
-        
-        
-        
-        
-        
-        
-        
+    
+
         #BFS
 #         if len(edges) != n - 1: return False
 
