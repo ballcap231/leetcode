@@ -1,6 +1,6 @@
 class Solution:
     def countComponents(self, n: int, edges: List[List[int]]) -> int:
-        #O(max(n,N)) time and O(N) space where N is length of edges
+        #O(N + n) time and O(N) space where N is length of edges
         #using DFS or BFS
         dd = defaultdict(set)
         seen = set()
