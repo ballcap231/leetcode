@@ -6,7 +6,7 @@
 #         self.right = right
 class Solution:
     def deepestLeavesSum(self, root: TreeNode) -> int:
-
+        #O(N) time and O(N) space
         deq = deque()
         deq.append((root, 0))
         sum_of_curr_level = 0
