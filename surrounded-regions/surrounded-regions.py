@@ -16,7 +16,7 @@ class Solution:
         """
         Do not return anything, modify board in-place instead.
         """
-        #O(N * M ) time and O(1) space - 3 passes though
+        #O(N * M ) time and O(N * M) space
         self.board = board
         self.x_len, self.y_len = len(self.board), len(self.board[0])
         if self.x_len < 3 or self.y_len < 3:
