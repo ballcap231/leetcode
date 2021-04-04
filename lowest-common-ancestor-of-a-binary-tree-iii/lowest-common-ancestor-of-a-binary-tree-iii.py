@@ -10,13 +10,13 @@ class Node:
 
 class Solution:
     def lowestCommonAncestor(self, p: 'Node', q: 'Node') -> 'Node':
-        #O(N) time and O(1) space
+        #O(H) time and O(1) space
         n_1, n_2 = p,q
-        
+
         while n_1 != n_2:
             n_1 = n_1.parent if n_1.parent else q
             n_2 = n_2.parent if n_2.parent else p
-        
+
         return n_1
     
     
