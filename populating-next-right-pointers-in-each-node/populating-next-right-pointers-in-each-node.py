@@ -10,24 +10,24 @@ class Node:
 
 class Solution:
     def connect(self, root: 'Node') -> 'Node':
-        
-        curr_node = root
-        first_node = root
-        while first_node:
-            first_node = first_node.left
-            while curr_node:
-                if curr_node.left:
+        #O(N) time and O(1) space
+        #BFS without a queue, level order traversal as a linked list
+        if root:
+            curr_node = root
+            first_node = root
+            while first_node.left:
+                first_node = first_node.left
+                while curr_node:
                     curr_node.left.next = curr_node.right
-                if curr_node.right and curr_node.next:
-                    curr_node.right.next = curr_node.next.left
-                curr_node = curr_node.next
-            curr_node = first_node
-        
+                    if curr_node.next:
+                        curr_node.right.next = curr_node.next.left
+                    curr_node = curr_node.next
+                curr_node = first_node
         return root
         
         
         
-        
+        #O(N) time and O(N) space - BFS
         # deq = deque()
         # if root: deq.append(root)
         # prev_node = None
@@ -43,34 +43,4 @@ class Solution:
         # return root
         
         
-        
-        if not root:
-            return root
-        
-        # Start with the root node. There are no next pointers
-        # that need to be set up on the first level
-        leftmost = root
-        
-        # Once we reach the final level, we are done
-        while leftmost.left:
-            
-            # Iterate the "linked list" starting from the head
-            # node and using the next pointers, establish the 
-            # corresponding links for the next level
-            head = leftmost
-            while head:
-                
-                # CONNECTION 1
-                head.left.next = head.right
-                
-                # CONNECTION 2
-                if head.next:
-                    head.right.next = head.next.left
-                                                                                                                                             
-                # Progress along the list (nodes on the current level)
-                head = head.next
-            
-            # Move onto the next level
-            leftmost = leftmost.left
-        
-        return root 
+    
