@@ -1,59 +1,48 @@
 class Solution:
+    def create_partial_match_table(self, string):
+        match_table = [0]
+
+        for char in string[1:]:
+            if char == string[match_table[-1]]:
+                match_table.append(match_table[-1] + 1)
+            else:
+                match_table.append(0)
+        return match_table
+    
     def maxRepeating(self, sequence: str, word: str) -> int:
-        count = 1
-        max_count = 0
+        #O(N) time and O(N) space where N is length of sequence
+        if len(sequence) < len(word): return 0
         max_repeat = len(sequence) // len(word)
+        max_repeat_str = word * max_repeat
+
         
-        while word * count in sequence:
-            max_count += 1
-            count += 1
+        match_table = self.create_partial_match_table(max_repeat_str)
+        seq_pointer = word_pointer = curr_max_repeat = 0
         
-        return max_count
+        while seq_pointer < len(sequence):
+            if sequence[seq_pointer] == max_repeat_str[word_pointer]:
+                seq_pointer += 1
+                word_pointer += 1
+                curr_max_repeat = max(curr_max_repeat, word_pointer // len(word))
+                if curr_max_repeat == max_repeat: return curr_max_repeat
+            else:
+                if word_pointer == 0:
+                    seq_pointer += 1
+                else:
+                    word_pointer = match_table[word_pointer - 1]        
         
+        return curr_max_repeat
+        
+
+#         #Brute Force
+#         #O(N^2) time and O(N) space where N is the length of sequence
+#         count = 1
+#         max_count = 0
 #         max_repeat = len(sequence) // len(word)
-#         max_repeat_str = word * (max_repeat)
-#         def make_LCP_indices(string):
-#             LCP_indices = [0]
-            
-#             for char in string[1:]:
-#                 if char == LCP_indices[-1]:
-#                     LCP_indices.append(LCP_indices[-1] + 1)
-#                 else:
-#                     LCP_indices.append(0)
-#             return LCP_indices
         
-#         LCP_indices = make_LCP_indices(max_repeat_str)
+#         while word * count in sequence:
+#             max_count += 1
+#             count += 1
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-#         s, w = len(sequence), len(word)
-#         max_repeat = s // w
-#         failure = [0] * (w * max_repeat + 1)
-#         repeat_words = word * max_repeat + '$'
-#         result = 0
-
-#         j = 0
-#         for i in range(1, len(repeat_words)):
-#             while j > 0 and repeat_words[j] != repeat_words[i]:
-#                 j = failure[j-1]
-#             j += repeat_words[j] == repeat_words[i]
-#             failure[i] = j
-
-#         j = 0
-#         for i, c in enumerate(sequence):
-#             while j > 0 and repeat_words[j] != c:
-#                 j = failure[j-1]
-#             j += repeat_words[j] == c
-#             result = max(result, j // w)
-
-#         return result
-        
-        
+#         return max_count
         
