@@ -1,3 +1,4 @@
+[Discussion Post (created on 11/3/2021 at 16:57)](https://leetcode.com/problems/shortest-palindrome/solution/)  
 <h2>214. Shortest Palindrome</h2><h3>Hard</h3><hr><div><p>You are given a string <code>s</code>. You can convert <code>s</code> to a palindrome by adding characters in front of it.</p>
 
 <p>Return <em>the shortest palindrome you can find by performing this transformation</em>.</p>
