@@ -20,6 +20,10 @@
 # ["Vector2D","hasNext","next","hasNext"]
 # [[[[],[3]]],[],[],[]]
 
+
+#O(V/N) time == O(N + V)/N == O(N/N + V/N) for next()
+#O(1) time for hasNext()
+#O(1) space for everything
 class Vector2D:
 
     def __init__(self, vec: List[List[int]]):
@@ -31,7 +35,6 @@ class Vector2D:
         
     def find_next_num(self):
         if self.curr_ls is None: return
-        self.curr_ls = self.vec[self.curr_x]
         
         if self.curr_y + 1 >= len(self.curr_ls):
             self.curr_y = 0
@@ -42,8 +45,6 @@ class Vector2D:
             self.curr_y += 1
         
     def next(self) -> int:
-        
-
         self.curr_ls = self.vec[self.curr_x]
         to_ret = self.curr_ls[self.curr_y]
         self.find_next_num()
