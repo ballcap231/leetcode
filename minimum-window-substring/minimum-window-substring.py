@@ -1,7 +1,10 @@
 class Solution:
     def valid_substr(self):
+        #O(1) because only 26 keys possible
         return all(self.curr_counts.get(key, -1) >= val for key,val in self.t_counts.items())
     def minWindow(self, s: str, t: str) -> str:
+        #O(|S|) time and O(1) space
+        #if we count return string as part of space then it's O(|S|)
         if len(t) > len(s): return ''
         self.t_counts = Counter(t)
         self.curr_counts = Counter()
