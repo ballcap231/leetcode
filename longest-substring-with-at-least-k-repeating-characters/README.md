@@ -1,3 +1,4 @@
+[Discussion Post (created on 17/3/2021 at 16:57)](https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters/solution/)  
 <h2>395. Longest Substring with At Least K Repeating Characters</h2><h3>Medium</h3><hr><div><p>Given a string <code>s</code> and an integer <code>k</code>, return <em>the length of the longest substring of</em> <code>s</code> <em>such that the frequency of each character in this substring is greater than or equal to</em> <code>k</code>.</p>
 
 <p>&nbsp;</p>
