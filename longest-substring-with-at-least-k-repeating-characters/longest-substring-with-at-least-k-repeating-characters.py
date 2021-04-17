@@ -1,53 +1,37 @@
 class Solution:
     def longestSubstring(self, s: str, k: int) -> int:
+        #O(N) time or O(max_unique * |s|) or O(26 * |s|)
         if k > len(s): return 0
         char_counts = Counter(s)
         max_unique = len(char_counts)
         longest_str = 0
+        self.k = k
         
         for unique_count in range(1,max_unique + 1):
             L,R = -1,0
-            curr_char_counts = Counter()
+            self.reset_char_counters()
             while R < len(s):
-                curr_char_counts[s[R]] += 1 
-                while len(curr_char_counts) > unique_count:
+                self.curr_char_counts[s[R]] += 1 
+                self.update_valid_chars(s[R])
+                while len(self.curr_char_counts) > unique_count:
                     L += 1
-                    curr_char_counts[s[L]] -= 1
-                    if curr_char_counts[s[L]] == 0:
-                        curr_char_counts.pop(s[L])
-                if all(xx >= k for xx in curr_char_counts.values()):
+                    self.curr_char_counts[s[L]] -= 1
+                    if self.curr_char_counts[s[L]] == 0:
+                        self.curr_char_counts.pop(s[L])
+                    self.update_valid_chars(s[L])
+                if len(self.valid_chars) == len(self.curr_char_counts):
                     longest_str = max(longest_str, R - L)
-                
-                
-                
                 R += 1
-        
         return longest_str
-                       
-        
-        
-        
-        
-#         if k > len(s): return 0
-#         counts = Counter(s)
-        
-#         longest_str = 0
-        
-#         curr_counts = Counter()
-#         left = -1
-        
-#         for right in range(len(s)):
-#             if counts[s[right]] < k:
-#                 curr_counts = Counter() 
-#                 left = right
-#             else:
-#                 curr_counts[s[right]] += 1
-#                 for num_strs in curr_counts.values():
-#                     if num_strs < k:
-#                         break
-#                 else:
-#                     longest_str = max(longest_str, right - left)
-#         return longest_str
+    
+    def reset_char_counters(self):
+        self.curr_char_counts = Counter()
+        self.valid_chars = set()
+    def update_valid_chars(self, char):
+        if self.curr_char_counts[char] >= self.k:
+            self.valid_chars.add(char)
+        else:
+            self.valid_chars.discard(char)
             
         
         
