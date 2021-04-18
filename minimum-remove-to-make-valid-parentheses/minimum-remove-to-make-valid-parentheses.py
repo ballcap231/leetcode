@@ -1,5 +1,6 @@
 class Solution:
     def minRemoveToMakeValid(self, s: str) -> str:
+        #O(N) time and O(N) space
         paren = []
         ret = []
         to_keep = set()
@@ -13,8 +14,7 @@ class Solution:
                     to_keep.add(pos)
                 else:
                     paren.append((char, pos))
-        
-                    
+
         for pos, char in enumerate(s):
             if char in "()":
                 if pos in to_keep:
