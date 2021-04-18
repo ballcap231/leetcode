@@ -1,6 +1,7 @@
 class Solution:
     def longestSubstring(self, s: str, k: int) -> int:
         #O(N) time or O(max_unique * |s|) or O(26 * |s|)
+        #O(1) space
         if k > len(s): return 0
         char_counts = Counter(s)
         max_unique = len(char_counts)
