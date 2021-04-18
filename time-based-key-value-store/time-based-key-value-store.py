@@ -4,17 +4,17 @@ class TimeMap:
         """
         Initialize your data structure here.
         """
+        #O(N) space
         self.map = defaultdict(list)
-        
-
     def set(self, key: str, value: str, timestamp: int) -> None:
+        #O(1) time
         if key not in self.map:
             self.map[key].append((-1, ""))
         self.map[key].append((timestamp,value))
 
     def get(self, key: str, timestamp: int) -> str:
+        #O(1) time
         if key not in self.map: return ""
-        
         times = self.map[key]
         times.append((float('inf'), ""))
         L,R = 0,len(times) - 1
