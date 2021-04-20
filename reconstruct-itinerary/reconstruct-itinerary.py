@@ -1,11 +1,9 @@
 class Solution:
     def findItinerary(self, tickets: List[List[str]]) -> List[str]:
-        
+        #Hierholzer's Algorithms
         outs = defaultdict(list)
-        ins = defaultdict(list)
         for ticket in tickets:
             outs[ticket[0]].append(ticket[1])
-            ins[ticket[1]].append(ticket[0])
         
         for cities in outs:
             outs[cities].sort(reverse = True)
