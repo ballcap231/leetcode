@@ -1,3 +1,4 @@
+[Discussion Post (created on 24/3/2021 at 14:32)](https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/solution/)  
 <h2>323. Number of Connected Components in an Undirected Graph</h2><h3>Medium</h3><hr><div><p>Given <code>n</code> nodes labeled from <code>0</code> to <code>n - 1</code> and a list of undirected edges (each edge is a pair of nodes), write a function to find the number of connected components in an undirected graph.</p>
 
 <p><b>Example 1:</b></p>
