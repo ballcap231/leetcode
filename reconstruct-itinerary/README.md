@@ -1,3 +1,4 @@
+[Discussion Post (created on 24/3/2021 at 11:7)](https://leetcode.com/problems/reconstruct-itinerary/solution/)  
 <h2>332. Reconstruct Itinerary</h2><h3>Medium</h3><hr><div><p>You are given a list of airline <code>tickets</code> where <code>tickets[i] = [from<sub>i</sub>, to<sub>i</sub>]</code> represent the departure and the arrival airports of one flight. Reconstruct the itinerary in order and return it.</p>
 
 <p>All of the tickets belong to a man who departs from <code>"JFK"</code>, thus, the itinerary must begin with <code>"JFK"</code>. If there are multiple valid itineraries, you should return the itinerary that has the smallest lexical order when read as a single string.</p>
