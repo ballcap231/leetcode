@@ -5,7 +5,7 @@ class Node:
         self.out_nodes = []
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
-        
+        #O(V + E) time and space
         graph = defaultdict(Node)
         tot_dep = 0
         for next_course, prev_course in prerequisites:
