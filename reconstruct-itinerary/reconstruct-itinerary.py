@@ -1,6 +1,7 @@
 class Solution:
     def findItinerary(self, tickets: List[List[str]]) -> List[str]:
         #Hierholzer's Algorithms
+        #O(E * log(E/V)) time and O(E + V) space
         outs = defaultdict(list)
         for ticket in tickets:
             outs[ticket[0]].append(ticket[1])
@@ -14,6 +15,6 @@ class Solution:
                 out_node = outs[node].pop()
                 dfs(out_node)
             self.ret.append(node)
-            
+        
         dfs("JFK")
         return self.ret[::-1]
