@@ -1,5 +1,7 @@
 class Solution:
     def findMinHeightTrees(self, n: int, edges: List[List[int]]) -> List[int]:
+        #O(V) time where V == number of  vertices - would be O(V + E) but E == V - 1 since acyclic
+        #O(V) space
         if n <= 2: return [xx for xx in range(n)]
         graph = defaultdict(set)
         
