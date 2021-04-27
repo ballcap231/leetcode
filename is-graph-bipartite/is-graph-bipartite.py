@@ -1,6 +1,7 @@
 class Solution:
     def isBipartite(self, graph: List[List[int]]) -> bool:
-        #O(V + E) time and O(V) space
+        #O(V + E) time and O(V) space - BFS
+        #Can also be done using DFS
         colors = {}
         dq = deque()
         for curr_node in range(len(graph)):
