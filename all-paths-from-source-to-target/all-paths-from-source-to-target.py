@@ -2,8 +2,11 @@ class Solution:
     def allPathsSourceTarget(self, graph: List[List[int]]) -> List[List[int]]:
         #Backtracking solution
         #O(N * 2^N) - very loose time and space bound
+        #O(N) time if output list is not part of space complexity - comes from curr_arr
         #Same complexity analysis as that for a superset of nodes
         #https://leetcode.com/problems/subsets/
+        #Because there are 2^N possible sets (each element is in or not in a set)
+        #In each set, there is a possibility of up to N elements or N nodes
         ret = []
         curr_arr = []
         target = len(graph) - 1
