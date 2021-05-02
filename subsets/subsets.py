@@ -26,6 +26,10 @@ class Solution:
 	def subsets(self, nums: List[int]) -> List[List[int]]:
 		# self.count = 0
 		self.ans = []
+        #O(N * 2^N) time and space
+        #O(N) space if we don't count output array as part of space to hold prev_combo
+        #Because there are 2^N possible sets (each element is in or not in a set)
+        #In each set, there is a possibility of up to N elements
 		def n_choose_k(n, k, prev_combo):
 			for count, val in enumerate(n):
 				# self.count += 1
