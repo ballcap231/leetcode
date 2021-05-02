@@ -20,6 +20,7 @@ class Solution:
                     curr_len += 1
                     nums_set.discard(lesser_num)
                     lesser_num -= 1
+                #tracking max conseq subseq so far
                 max_len = max(max_len, curr_len)
         return max_len
         
