@@ -1,5 +1,7 @@
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
+        #O(NlogN) time and O(1) space or O(N) space if can't modify input arr
+        #Brute force
         nums.sort()
         
         max_len = 0
