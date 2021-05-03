@@ -1,6 +1,6 @@
 class Solution:
     def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
-        #O(N * M) time and O(M + N) space
+        #O(N * M) time and O(min(M + N)) space
         x_len = len(grid)
         y_len = len(grid[0])
         
