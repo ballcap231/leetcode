@@ -1,6 +1,6 @@
 from heapq import heappush,heappushpop,heappop
 class MedianFinder:
-    #O(1) time and O(1) space
+    #O(1) time and O(N) space
     def __init__(self):
         """
         initialize your data structure here.
@@ -21,6 +21,29 @@ class MedianFinder:
             return (self.min_h[0] - self.max_h[0]) / 2
         else:
             return self.min_h[0]
+
+
+#     #O(1) time and O(N) space
+#     def __init__(self):
+#         """
+#         initialize your data structure here.
+#         """
+#         self.arr = []
+        
+#     #O(1) time and O(1) space
+#     def addNum(self, num: int) -> None:
+#         self.arr.append(num)
+#     #O(NlogN) time and O(N) space
+#     def findMedian(self) -> float:
+#         self.arr.sort()
+#         if self.arr and len(self.arr) % 2 == 0:
+#             L,R = len(self.arr) // 2 - 1, len(self.arr) // 2
+#             return (self.arr[L] + self.arr[R]) / 2
+#         else:
+#             return self.arr[len(self.arr) // 2]
+    
+    
+
         
 
 
