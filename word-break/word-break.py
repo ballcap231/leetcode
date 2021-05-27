@@ -1,5 +1,6 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        #O(N^3 + |wordDict|) time and O(N + |wordDict|) space
         words = set(wordDict)
         deq = deque()
         is_word = [0 for _ in range(len(s) + 1)]
