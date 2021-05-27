@@ -2,9 +2,8 @@ class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
         #O(N^3 + |wordDict|) time and O(N + |wordDict|) space
         words = set(wordDict)
-        deq = deque()
         is_word = [0 for _ in range(len(s) + 1)]
-        is_word[0] = 1
+        is_word[0] = 1 #empty string is a valid word
         
         for right in range(1, len(s) + 1):
             for left in range(right):
@@ -37,7 +36,7 @@ class Solution:
         
         
 #         #Worst case example: s = 'aaaaab' and wordDict = {'a','aa','aaa','aaaa'}
-#         #O(N^3) time and O(N + |wordDict|) space complexity
+#         #O(N^3 + |wordDict|) time and O(N + |wordDict|) space complexity
 #         len_word = len(s)
 #         dictionary = set(wordDict)
 
