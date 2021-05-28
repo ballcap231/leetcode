@@ -14,10 +14,32 @@ class Solution:
                     q.append(end)
                     if end == len(s):
                         return True
-                visited.add(start)
+            visited.add(start)
         return False
         
         
+        
+#         deq = deque()
+#         visited = set()
+#         words = set(wordDict)
+#         deq.append(0)
+        
+#         while deq:
+#             start = deq.popleft()
+#             if start in visited:
+#                 continue
+#             for end in range(start + 1, len(s)):
+#                 if s[start:end] in words:
+#                     if end == len(s) - 1:
+#                         return True
+#                     deq.append(end)
+                    
+#         return False
+
+
+
+
+#         # Bottom-Up DP
 #         #O(N^3 + |wordDict|) time and O(N + |wordDict|) space
 #         words = set(wordDict)
 #         is_word = [0 for _ in range(len(s) + 1)]
