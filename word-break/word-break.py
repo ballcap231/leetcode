@@ -1,16 +1,35 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
-        #O(N^3 + |wordDict|) time and O(N + |wordDict|) space
-        words = set(wordDict)
-        is_word = [0 for _ in range(len(s) + 1)]
-        is_word[0] = 1 #empty string is a valid word
+        word_set = set(wordDict)
+        q = deque()
+        visited = set()
+
+        q.append(0)
+        while q:
+            start = q.popleft()
+            if start in visited:
+                continue
+            for end in range(start + 1, len(s) + 1):
+                if s[start:end] in word_set:
+                    q.append(end)
+                    if end == len(s):
+                        return True
+                visited.add(start)
+        return False
         
-        for right in range(1, len(s) + 1):
-            for left in range(right):
-                if is_word[left] and s[left:right] in words:
-                    is_word[right] = 1
-                    break
-        return is_word[-1]
+        
+#         #O(N^3 + |wordDict|) time and O(N + |wordDict|) space
+#         words = set(wordDict)
+#         is_word = [0 for _ in range(len(s) + 1)]
+#         is_word[0] = 1 #empty string is a valid word
+        
+#         for right in range(1, len(s) + 1):
+#             for left in range(right):
+#                 if is_word[left] and s[left:right] in words:
+#                     is_word[right] = 1
+#                     break
+
+#         return is_word[-1]
         
         
         
