@@ -1,40 +1,23 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
-        word_set = set(wordDict)
-        q = deque()
+        #BFS
+        #O(N^3 + |wordDict|) time and O(N  + |wordDict|) space
+        deq = deque()
         visited = set()
-
-        q.append(0)
-        while q:
-            start = q.popleft()
+        words = set(wordDict)
+        deq.append(0)
+        
+        while deq:
+            start = deq.popleft()
             if start in visited:
                 continue
             for end in range(start + 1, len(s) + 1):
-                if s[start:end] in word_set:
-                    q.append(end)
+                if s[start:end] in words:
                     if end == len(s):
                         return True
+                    deq.append(end)
             visited.add(start)
         return False
-        
-        
-        
-#         deq = deque()
-#         visited = set()
-#         words = set(wordDict)
-#         deq.append(0)
-        
-#         while deq:
-#             start = deq.popleft()
-#             if start in visited:
-#                 continue
-#             for end in range(start + 1, len(s)):
-#                 if s[start:end] in words:
-#                     if end == len(s) - 1:
-#                         return True
-#                     deq.append(end)
-                    
-#         return False
 
 
 
