@@ -28,10 +28,10 @@ class Solution:
         is_word = [0 for _ in range(len(s) + 1)]
         is_word[0] = 1 #empty string is a valid word
         
-        for right in range(1, len(s) + 1):
-            for left in range(right):
-                if is_word[left] and s[left:right] in words:
-                    is_word[right] = 1
+        for end in range(1, len(s) + 1):
+            for start in range(end):
+                if is_word[start] and s[start:end] in words:
+                    is_word[end] = 1
                     break
 
         return is_word[-1]
