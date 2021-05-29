@@ -1,56 +1,57 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
-#         #BFS
-#         #O(N^3 + |wordDict|) time and O(N  + |wordDict|) space
-#         deq = deque()
-#         visited = set()
-#         words = set(wordDict)
-#         deq.append(0)
-        
-#         while deq:
-#             start = deq.popleft()
-#             if start in visited:
-#                 continue
-#             for end in range(start + 1, len(s) + 1):
-#                 if s[start:end] in words:
-#                     if end == len(s):
-#                         return True
-#                     deq.append(end)
-#             visited.add(start)
-#         return False
-
-
-
-
-        # Bottom-Up DP
-        #O(N^3 + |wordDict|) time and O(N + |wordDict|) space
+        #BFS
+        #O(N^3 + |wordDict|) time and O(N  + |wordDict|) space
+        deq = deque()
+        visited = set()
         words = set(wordDict)
-        is_word = [0 for _ in range(len(s) + 1)]
-        is_word[0] = 1 #empty string is a valid word
+        deq.append(0)
         
-        for end in range(1, len(s) + 1):
-            for start in range(end):
-                if is_word[start] and s[start:end] in words:
-                    is_word[end] = 1
-                    break
+        while deq:
+            start = deq.popleft()
+            if start in visited:
+                continue
+            for end in range(start + 1, len(s) + 1):
+                if s[start:end] in words:
+                    if end == len(s):
+                        return True
+                    deq.append(end)
+            visited.add(start)
+        return False
 
-        return is_word[-1]
+
+
+
+#         # Bottom-Up DP
+#         #O(N^3 + |wordDict|) time and O(N + |wordDict|) space
+#         words = set(wordDict)
+#         is_word = [0 for _ in range(len(s) + 1)]
+#         is_word[0] = 1 #empty string is a valid word
+        
+#         for end in range(1, len(s) + 1):
+#             # for start in range(end - 1, -1, -1): # works too, traverses breadth-wise instead of depth-wise (not DFS or BFS though, because pruning involved!)
+#             for start in range(end):
+#                 if is_word[start] and s[start:end] in words:
+#                     is_word[end] = 1
+#                     break
+
+#         return is_word[-1]
         
         
         
         
 #         #Brute force using Backtracking
 #         #Worst case example: s = 'aaaaab' and wordDict = {'a','aa','aaa','aaaa'}
-#         #O(2^N) time and O(N + |wordDict|) space complexity
+#         #O(2^N + |wordDict|) time and O(N + |wordDict|) space complexity
 #         len_word = len(s)
 #         dictionary = set(wordDict)
 
 #         def check_substring(start):
 #             if start == len_word:
 #                 return True
-#             for curr_pos in range(start + 1, len_word + 1):
+#             for end in range(start + 1, len_word + 1):
 #                 #O(N) operation to slice string
-#                 if s[start:curr_pos] in dictionary and check_substring(curr_pos):
+#                 if s[start:end] in dictionary and check_substring(end):
 #                     return True
 #             return False
         
@@ -69,9 +70,9 @@ class Solution:
 #         def check_substring(start):
 #             if start == len_word:
 #                 return True
-#             for curr_pos in range(start + 1, len_word + 1):
+#             for end in range(start + 1, len_word + 1):
 #                 #O(N) operation to slice string
-#                 if s[start:curr_pos] in dictionary and check_substring(curr_pos):
+#                 if s[start:end] in dictionary and check_substring(end):
 #                     return True
 #             return False
         
