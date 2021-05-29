@@ -1,40 +1,40 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
-        #BFS
-        #O(N^3 + |wordDict|) time and O(N  + |wordDict|) space
-        deq = deque()
-        visited = set()
-        words = set(wordDict)
-        deq.append(0)
-        
-        while deq:
-            start = deq.popleft()
-            if start in visited:
-                continue
-            for end in range(start + 1, len(s) + 1):
-                if s[start:end] in words:
-                    if end == len(s):
-                        return True
-                    deq.append(end)
-            visited.add(start)
-        return False
-
-
-
-
-#         # Bottom-Up DP
-#         #O(N^3 + |wordDict|) time and O(N + |wordDict|) space
+#         #BFS
+#         #O(N^3 + |wordDict|) time and O(N  + |wordDict|) space
+#         deq = deque()
+#         visited = set()
 #         words = set(wordDict)
-#         is_word = [0 for _ in range(len(s) + 1)]
-#         is_word[0] = 1 #empty string is a valid word
+#         deq.append(0)
         
-#         for right in range(1, len(s) + 1):
-#             for left in range(right):
-#                 if is_word[left] and s[left:right] in words:
-#                     is_word[right] = 1
-#                     break
+#         while deq:
+#             start = deq.popleft()
+#             if start in visited:
+#                 continue
+#             for end in range(start + 1, len(s) + 1):
+#                 if s[start:end] in words:
+#                     if end == len(s):
+#                         return True
+#                     deq.append(end)
+#             visited.add(start)
+#         return False
 
-#         return is_word[-1]
+
+
+
+        # Bottom-Up DP
+        #O(N^3 + |wordDict|) time and O(N + |wordDict|) space
+        words = set(wordDict)
+        is_word = [0 for _ in range(len(s) + 1)]
+        is_word[0] = 1 #empty string is a valid word
+        
+        for right in range(1, len(s) + 1):
+            for left in range(right):
+                if is_word[left] and s[left:right] in words:
+                    is_word[right] = 1
+                    break
+
+        return is_word[-1]
         
         
         
@@ -60,6 +60,7 @@ class Solution:
         
         
 #         #Worst case example: s = 'aaaaab' and wordDict = {'a','aa','aaa','aaaa'}
+#         #Top-Down DP using backtracking
 #         #O(N^3 + |wordDict|) time and O(N + |wordDict|) space complexity
 #         len_word = len(s)
 #         dictionary = set(wordDict)
