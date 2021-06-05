@@ -1,5 +1,7 @@
 class Solution:
     def longestCommonSubsequence(self, text1: str, text2: str) -> int:
+        #Bottom-Up DP
+        #O(M *N) time and space where M and N are lengths of text1 and text2 respectively
         table = [[0 for _ in range(len(text1) + 1)] for _ in range(len(text2) + 1)]
         
         
