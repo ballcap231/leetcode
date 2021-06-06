@@ -1,5 +1,6 @@
 class Solution:
     def reductionOperations(self, nums: List[int]) -> int:
+        #O(NlogN) time and O(N) space
         counts = Counter(nums)
         if len(counts) == 1:
             return 0
