@@ -1,5 +1,6 @@
 class Solution:
     def minOperations(self, s: str) -> int:
+        #O(N) time and O(N) space
         one_opt = []
         second_opt  = []
         for ii in range(len(s)):
