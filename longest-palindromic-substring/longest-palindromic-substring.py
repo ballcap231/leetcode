@@ -1,70 +1,36 @@
 class Solution:
     def longestPalindrome(self, s: str) -> str:
-        # if s is "":
-        #     return s
-        # res = ""
-        # dp = [[None for i in range(len(s))] for j in range(len(s))]
-        # for j in range(len(s)):
-        #     for i in range(j + 1):
-        #         if i == j:
-        #             dp[j][i] = True
-        #         elif j == i+1:
-        #             dp[j][i] = (s[i] == s[j])
-        #         else:
-        #             dp[j][i] = (dp[j-1][i+1] and s[i] == s[j])
-        #         if dp[j][i] and j - i + 1 > len(res):
-        #             res = s[i:j+1]
-        # return res
+#         #Bottom-Up DP - using 2-D matrix for 1-D String
+#         #O(N^2) time and space
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-#         #O(N^2) time and space - Bottom Up DP
+#         #Boolean matrix of palindromes
 #         table = [[False for _ in range(len(s))] for _ in range(len(s))]
-#         max_length = 1
-#         start = len(s) - 1
         
-#         #Making all chars on diagonal to be True - 1 character alone is a palindrome
-#         for ii in range(len(s)):
-#             #Making all chars on diagonal to be True - 1 character alone is a palindrome
-#             table[ii][ii] = True
-#             #Checking if all chars of len 2 are palindromes
-#             if ii < len(s) - 1:
-#                 if s[ii] == s[ii + 1]:
-#                     table[ii][ii + 1] = True
-#                     if max_length == 1:
-#                         max_length = 2
-#                         start = ii
-#         # #Checking if all chars of len 2 are palindromes
-#         # for ii in range(len(s) - 1):
-#         #     if s[ii] == s[ii + 1]:
-#         #         table[ii][ii + 1] = True
-#         #         if max_length == 1:
-#         #             max_length = 2
-#         #             start = ii
+#         max_length = 0
+#         start = end = 0
         
-#         for width in range(3, len(s) + 1):
-#             for i in range(len(s) - width + 1):
-#                 # print(width, i)
-#                 j = i + width - 1
-#                 if table[i + 1][j - 1] and s[i] == s[j]:
-#                     table[i][j] = True
-#                     if width > max_length:
-#                         max_length = width
-#                         start = i
-#         return s[start:start + max_length]
-        
-        
-        
-        
-        
-        
+#         #Filling in bottom left triangle of square boolean palindrome matrix
+#         #row value represents position of end of string 
+#         #col value represents position of start of string 
+#         for row in range(len(s)):
+#             for col in range(row + 1):
+#                 #Single char is always palindrome
+#                 if row == col:
+#                     table[row][col] = True
+#                 #2 chars are palindromes if they are equal
+#                 elif row == col + 1:
+#                     table[row][col] = s[row] == s[col]
+#                 #3 chars or more are palindromes if the first & last chars are equal and if inner substring are palindromes
+#                 else:
+#                     table[row][col] = (s[row] == s[col] and table[row - 1][col + 1])
+#                 #if this position is a palindrome, update max palindrome length string positions
+#                 if table[row][col] and row - col + 1 > max_length:
+#                     max_length = row - col + 1
+#                     start = col
+#                     end = row
+                    
+#         return s[start:end + 1]
+                    
         
         if len(s) < 2:
             return s
