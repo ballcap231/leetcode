@@ -1,11 +1,9 @@
 class Solution:
     def destCity(self, paths: List[List[str]]) -> str:
-        outs = Counter()
-        
-        for from_, to_ in paths:
-            outs[from_] += 1
-            outs[to_] += 0
-        
-        for city,out_nodes in outs.items():
-            if out_nodes == 0:
-                return city
+        from_set = set()
+        to_set = set()
+        for ls in paths:
+            from_set.add(ls[0])
+            to_set.add(ls[1])
+        city = to_set.difference(from_set)
+        return city.pop()
