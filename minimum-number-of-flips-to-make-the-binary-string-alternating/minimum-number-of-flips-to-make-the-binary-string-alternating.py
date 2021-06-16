@@ -1,5 +1,7 @@
 class Solution:
     def minFlips(self, s: str) -> int:
+        #O(N) time and O(N) space
+        #Sliding window approach
         l = len(s)
         s_new = s * 2
         opt_1 = '01' * l
@@ -19,28 +21,6 @@ class Solution:
             if pos >= l - 1:
                 min_flip = min(min_flip, min_1, min_2)
         return min_flip
-        
-        
-        # n = len(s)
-        # t = s + s
-        # a = '01' * n
-        # b = '10' * n
-        # ans = n
-        # da = 0
-        # db = 0
-        # for count in range(n * 2):
-        #     if t[count] != a[count]:
-        #         da += 1
-        #     if t[count] != b[count]:
-        #         db += 1
-        #     if count >= n:
-        #         if t[count - n] != a[count - n]:
-        #             da -= 1
-        #         if t[count - n] != b[count - n]:
-        #             db -= 1
-        #     if count >= n - 1:
-        #         ans = min(ans, da, db)
-        # return ans
         
         
         
