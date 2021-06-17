@@ -5,7 +5,7 @@ class Solution:
         if not x and not y:
             return 0
         x,y = abs(x),abs(y)
-        paths = [(1,2),(2,1),(1,-2),(2,-1),(-1,2),(-2,1)]
+        paths = [(1,2),(2,1),(1,-2),(2,-1),(-1,2),(-2,1),(-1,-2),(-2,-1)]
         Q = deque([(xx, 1) for xx in paths])
         visited = set([(0,0)])
         
@@ -17,11 +17,18 @@ class Solution:
                 new_x = curr[0] + path[0]
                 new_y = curr[1] + path[1]
                 new_pos = (new_x,new_y)
-                if new_pos not in visited and -2 <= new_x <= x+2 and -2 <= new_y <= y+2:
+                if new_pos not in visited:
                     Q.append((new_pos,jumps + 1))
                     visited.add(new_pos)
-
-    
+        
+        # x, y = abs(x), abs(y)
+        # if (x < y): x, y = y, x
+        # if (x == 1 and y == 0): return 3        
+        # if (x == 2 and y == 2): return 4        
+        # delta = x - y
+        # if (y > delta): return delta - 2 * int((delta - y) // 3);
+        # else: return delta - 2 * int((delta - y) // 4);
+        
         # @lru_cache(None) 
         # def dp(x,y):
         #     if x + y == 0: return 0
