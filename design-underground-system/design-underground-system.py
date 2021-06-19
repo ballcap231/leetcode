@@ -1,12 +1,14 @@
+# O(E) space where E is the number possible station routes 
 class UndergroundSystem:
-
+    #O(1) time and space
     def __init__(self):
         self.station_means = {}
         self.check_ins = {}
-
+    
+    # O(1) time and space
     def checkIn(self, id: int, stationName: str, t: int) -> None:
         self.check_ins[id] = [stationName, t]
-
+    # O(1) time and space
     def checkOut(self, id: int, stationName: str, t: int) -> None:
         in_station, in_time = self.check_ins.pop(id)
         station_map = (in_station, stationName)
@@ -16,6 +18,7 @@ class UndergroundSystem:
         else:
             time_sum,time_count = self.station_means[station_map]
             self.station_means[station_map] = time_sum + current_time, time_count + 1
+    # O(1) time and space
     def getAverageTime(self, startStation: str, endStation: str) -> float:
         time_sum, time_count = self.station_means[(startStation, endStation)]
         time_mean = time_sum / time_count
