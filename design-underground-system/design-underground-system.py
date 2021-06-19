@@ -1,4 +1,4 @@
-# O(E) space where E is the number possible station routes 
+# O(E + V) space where E is the number possible station routes and V is number of possible stations
 class UndergroundSystem:
     #O(1) time and space
     def __init__(self):
