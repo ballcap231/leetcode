@@ -6,18 +6,21 @@
 #         self.right = right
 class Solution:
     def closestValue(self, root: TreeNode, target: float) -> int:
+        #O(H) time if unbalanced tree and O(logH) if balanced tree and O(1) space
+        #Iterative DFS or Binary Search?
         self.closest_val = root.val
-        def dfs(node):
-            if not node:
-                return self.closest_val
-            if node.val == target:
-                return node.val
-            if abs(node.val - target) < abs(self.closest_val - target):
-                self.closest_val = node.val
-            if node.val > target:
-                return dfs(node.left)
+        curr_node = root
+        while curr_node:
+            if curr_node.val == target:
+                return curr_node.val
+            if abs(target - curr_node.val) < abs(target - self.closest_val):
+                self.closest_val = curr_node.val
+            if curr_node.val < target:
+                curr_node = curr_node.right
             else:
-                return dfs(node.right)
-        return dfs(root)
+                curr_node = curr_node.left
+        return self.closest_val
+        
+
                 
                 
