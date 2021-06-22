@@ -1,23 +1,37 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
-        #BFS
-        #O(N^3 + |wordDict|) time and O(N  + |wordDict|) space
-        deq = deque()
-        visited = set()
-        words = set(wordDict)
-        deq.append(0)
-        
-        while deq:
-            start = deq.popleft()
-            if start in visited:
-                continue
-            for end in range(start + 1, len(s) + 1):
-                if s[start:end] in words:
-                    if end == len(s):
+        word_set = set(wordDict)
+        @lru_cache(maxsize = None)
+        def backtrack(pos):
+            if pos >= len(s):
+                return True
+            for right_pos in range(pos + 1, len(s) + 1):
+                if s[pos:right_pos] in word_set:
+                    if backtrack(right_pos):
                         return True
-                    deq.append(end)
-            visited.add(start)
-        return False
+            return False
+        return backtrack(0)
+        
+        
+        
+#         #BFS
+#         #O(N^3 + |wordDict|) time and O(N  + |wordDict|) space
+#         deq = deque()
+#         visited = set()
+#         words = set(wordDict)
+#         deq.append(0)
+        
+#         while deq:
+#             start = deq.popleft()
+#             if start in visited:
+#                 continue
+#             for end in range(start + 1, len(s) + 1):
+#                 if s[start:end] in words:
+#                     if end == len(s):
+#                         return True
+#                     deq.append(end)
+#             visited.add(start)
+#         return False
 
 
 
