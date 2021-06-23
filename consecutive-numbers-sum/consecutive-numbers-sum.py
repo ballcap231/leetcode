@@ -18,14 +18,11 @@ class Solution:
         
         #Math - O(N ** 0.5) time and O(1) space
         count = 0
-        count2 = 0
-        upper_bound = ceil((2 * n + 0.25) ** 0.5 - 0.5)
+        # upper_bound = ceil((2 * n + 0.25) ** 0.5 - 0.5)
+        upper_bound = int((2*n)**(1/2))
         for k in range(1, upper_bound + 1):
+            # checking if x is an integer - i.e. x and k are valid values
             x = n / k -  (k + 1) / 2
             if int(x) == x:
                 count += 1
-            if (n - k * (k + 1) // 2) % k == 0:
-                count2 += 1
-                print(x, (n - k * (k + 1) // 2), count, count2)
-        
-        return count2
+        return count
