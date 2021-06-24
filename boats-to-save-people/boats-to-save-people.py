@@ -1,5 +1,6 @@
 class Solution:
     def numRescueBoats(self, people: List[int], limit: int) -> int:
+        #Greedy, 2 pointer approach
         #O(NlogN) time and O(N) or O(1) space depending on if in-place sort allowed
         people.sort()
         l,r = 0, len(people) - 1
@@ -14,9 +15,6 @@ class Solution:
         if l == r:
             count += 1
         return count
-        
-        
-        
         
         # # Brute force
         # #O(N^2) time and O(N) space
