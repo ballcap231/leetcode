@@ -7,7 +7,7 @@
 class Solution:
     def minCameraCover(self, root: TreeNode) -> int:
         #Post-Order Greedy DFS
-        
+        #O(N) time and O(H) space
         self.count = 0
         covered = {None}
         
@@ -16,9 +16,11 @@ class Solution:
                 dfs(node.left, node)
                 dfs(node.right, node)
                 
-                if node.left not in covered or node.right not in covered or node not in covered and not parent:
+                if node.left not in covered or node.right not in covered:
                     self.count += 1
                     covered.update({node, parent, node.left, node.right})
         dfs(root, None)
+        if root not in covered:
+            self.count += 1
         return self.count
         
