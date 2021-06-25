@@ -1,7 +1,7 @@
 class Solution:
     def removeDuplicateLetters(self, s: str) -> str:
         # Stack
-        #O(N) time and O(N) space
+        #O(N) time and O(1) space
         seen_chars = set()
         furthest_pos = {char:pos for pos, char in enumerate(s)}
         stack = []
