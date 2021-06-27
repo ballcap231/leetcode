@@ -16,7 +16,8 @@ class Solution:
                     board[R][C] = board[R - 1][C] = board[R - 2][C] = -abs(board[R][C])
                     crushed = True
         
-        #shifting all candy down the board
+        #shifting all candy down the board'
+        #Uses 2 loop approach from https://leetcode.com/problems/move-zeroes/solution/
         for col in range(cols):
             bottom = rows - 1
             #Shifting all cells > 0 down 
