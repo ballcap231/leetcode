@@ -14,7 +14,8 @@ class Solution:
         l, r = valid_substring(l,r)
         if l < r:
             l_2, r_2 = valid_substring(l + 1, r)
-            l_3, r_3 = valid_substring(l, r - 1)
+            if l_2 < r_2:
+                l_3, r_3 = valid_substring(l, r - 1)
         
         return l >= r or l_2 >= r_2 or l_3 >= r_3
             
