@@ -1,6 +1,6 @@
 class Solution:
     def validPalindrome(self, s: str) -> bool:
-        #O(N) time
+        #O(N) time and O(1) space
         diff_count = 0
         l,r = 0, len(s) - 1
         
