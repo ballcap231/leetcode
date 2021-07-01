@@ -1,6 +1,6 @@
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
-        #O(N * 3^L) time and O(1) space
+        #O((N * M) * 3^|word|) time and O(|word|) space
         x_len = len(board)
         y_len = len(board[0])
         
