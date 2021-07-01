@@ -24,4 +24,15 @@ class Solution:
             return ls[0]
         else:
             return (ls[0] + ls[1]) / 2
+        
+        
+        #Brute Force
+        #O(NlogN) where N = |nums1| + |nums2|
+        nums1 += nums2
+        nums1.sort()
+        print(nums1)
+        if len(nums1) % 2 == 0:
+            return (nums1[len(nums1) // 2] + nums1[len(nums1) // 2 - 1]) / 2
+        else:
+            return nums1[len(nums1) // 2]
             
