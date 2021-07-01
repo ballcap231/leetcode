@@ -1,6 +1,7 @@
 from collections import deque
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
+        #BFS solution
         #O(M X N) time for M rows and N columns
         #O(min(M,N)) space complexity
         
