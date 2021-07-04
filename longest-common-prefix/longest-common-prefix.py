@@ -1,5 +1,7 @@
 class Solution:
     def longestCommonPrefix(self, strs: List[str]) -> str:
+        #O(N) time where N == # chars in strs
+        #O(1) space
         min_str = min(len(xx) for xx in strs)
         char_pos = 0
         if len(strs) == 1: return strs[0]
