@@ -36,6 +36,7 @@ class Solution:
             child_node = parent_node.children[curr_char]
             if child_node.is_word:
                 self.found_words.append(child_node.final_word)
+                #Removing word from leaf node after being recorded
                 child_node.is_word = False
                 child_node.final_word = None
 
@@ -44,7 +45,7 @@ class Solution:
                 new_x, new_y = xx + move[0], yy + move[1]
                 backtrack(new_x, new_y, child_node)
             board[xx][yy] = curr_char
-            
+            #Pruning node if it is not a word and doesn't have children
             if not child_node.is_word and not child_node.children:
                 parent_node.children.pop(curr_char)
             
