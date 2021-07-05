@@ -20,7 +20,7 @@ class Solution(object):
 #         return res                
     
 #     def threeSum(self, nums):
-#         #O(N^2) and O(N) space
+#         #O(N^2) and O(N) auxiliary space or O(N^2) including output space
 #         if len(nums)<3:
 #             return []
         
@@ -39,36 +39,58 @@ class Solution(object):
 
     # def threeSum(self, nums):
     #     #Brute Force
-    #     #O(N^3) time and O(N) auxiliary space
+    #     #O(N^3) time and O(N) auxiliary space or O(N^2) including output space
     #     output = []
-    #     nums.sort()
-    #     if len(nums) < 3 or nums[-1] < 0: return []
     #     soln = set()
     #     for xx in range(len(nums) - 2):
-    #         if nums[xx] > 0: break
     #         for yy in range(xx + 1, len(nums) - 1):
     #             for zz in range(yy + 1, len(nums)):
     #                 if nums[xx] + nums[yy] + nums[zz] == 0:
     #                     soln.add(tuple(sorted([nums[xx],nums[yy],nums[zz]])))
-    #     return list(soln)
+    #     return soln
+    
+#     def threeSum(self, nums):
+#         #O(N^2) time and O(N) auxiliary space or O(N^2) including output space
+#         duplicates = set()
+#         ret = set()
+        
+#         for first_pos, first_num in enumerate(nums):
+#             if first_num not in duplicates:
+#                 duplicates.add(first_num)
+#                 first_num_combos = set()
+#                 for second_pos in range(first_pos + 1, len(nums)):
+#                     second_num = nums[second_pos]
+#                     third_num = -(first_num + second_num)
+#                     if third_num in first_num_combos:
+#                         ret.add(tuple(sorted([first_num, second_num, third_num])))
+#                     first_num_combos.add(second_num)
+#         return ret
     
     def threeSum(self, nums):
-        duplicates = set()
-        ret = set()
-        
-        for first_pos in range(len(nums)):
-            first_num = nums[first_pos]
-            if first_num not in duplicates:
-                duplicates.add(first_num)
-                first_num_combos = set()
-                for second_pos in range(first_pos + 1, len(nums)):
-                    second_num = nums[second_pos]
-                    complement = -(first_num + second_num)
-                    # if first_num_combos.get(complement, "foobar") == first_pos:
-                    if complement in first_num_combos:
-                        ret.add(tuple(sorted([first_num, second_num, complement])))
-                    first_num_combos.add(second_num)
-        return ret
-    
+        def kSum(nums, target, k):
+            if len(nums) == 0 or nums[0] * k > target or target > nums[-1] * k:
+                return []
+            if k == 2:
+                return twoSum(nums, target)
+            res = []
+            for i in range(len(nums)):
+                if i == 0 or nums[i - 1] != nums[i]:
+                    for _, set in enumerate(kSum(nums[i + 1:], target - nums[i], k - 1)):
+                        res.append([nums[i]] + set)
+            return res
+
+        def twoSum(nums, target):
+            res = []
+            s = set()
+            for i in range(len(nums)):
+                if len(res) == 0 or res[-1][1] != nums[i]:
+                    if target - nums[i] in s:
+                        res.append([target - nums[i], nums[i]])
+                s.add(nums[i])
+            return res
+
+        nums.sort()
+        target = 0
+        return kSum(nums, target, 3)
     
     
