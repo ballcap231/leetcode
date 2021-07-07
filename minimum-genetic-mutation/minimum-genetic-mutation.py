@@ -2,6 +2,7 @@ from itertools import combinations
 from collections import defaultdict, deque
 class Solution:
     def is_mutation(self, gene1, gene2):
+        #Returns if Hamming Distance is less than 2
         diff = 0
         pos = 0
         while diff < 2 and pos < len(gene1):
@@ -23,9 +24,7 @@ class Solution:
             if self.is_mutation(combo[0], combo[1]):
                 out_nodes[combo[0]].append(combo[1])
                 out_nodes[combo[1]].append(combo[0])
-        
-        if end not in out_nodes: return -1
-        
+
         dq = deque([(start, 0)])
         visited = set([start])
         # BFS - takes O(V + E) traversal and O(V) space
