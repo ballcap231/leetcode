@@ -11,6 +11,8 @@ class Solution:
         return diff < 2
         
     def minMutation(self, start: str, end: str, bank: List[str]) -> int:
+        #O(V^2 + V + E) == O(V^2 + E) time and O(V) space, 
+        # where V = |bank| and E = number of genes that differs by 1 char in bank
         out_nodes = defaultdict(list)
         graph = bank + [start]
         combos = combinations(graph, r = 2)
@@ -25,7 +27,6 @@ class Solution:
         dq = deque([(start, 0)])
         visited = set([start])
         # BFS
-        
         while dq:
             curr_node, depth = dq.popleft()
             for node in out_nodes[curr_node]:
