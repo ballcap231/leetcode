@@ -11,10 +11,12 @@ class Solution:
         return diff < 2
         
     def minMutation(self, start: str, end: str, bank: List[str]) -> int:
-        #O(V^2 + V + E) == O(V^2 + E) time and O(V) space, 
-        # where V = |bank| and E = number of genes that differs by 1 char in bank
+        #O(V^2 + V + E) == O(V^2) time and O(V^2) space, 
+        # where V = |bank| and E = number of genes pairs that differs by 1 char in bank
+        # but V^2 is always larger than E since V^2 is all gene pairs possible in bank
         out_nodes = defaultdict(list)
         graph = bank + [start]
+        #Takes O(V^2) time and space to build all possible gene pair combinations
         combos = combinations(graph, r = 2)
         
         for combo in combos:
@@ -26,7 +28,7 @@ class Solution:
         
         dq = deque([(start, 0)])
         visited = set([start])
-        # BFS
+        # BFS - takes O(V + E) traversal and O(V) space
         while dq:
             curr_node, depth = dq.popleft()
             for node in out_nodes[curr_node]:
