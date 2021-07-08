@@ -4,10 +4,10 @@ class Solution:
         dd = defaultdict(list)
         output = []
         for pos, word in enumerate(strs):
-            counter = Counter(sorted(word))
-            key = tuple(counter.items())
+            counter = Counter(word)
+            # key = tuple(sorted(counter.items()))
+            key = frozenset(counter.items())
             dd[key].append(pos)
-        print(dd)
         for key,val in dd.items():
             new_ls = []
             for ii in val:
@@ -16,7 +16,15 @@ class Solution:
         return output
         
         
+        # ans = collections.defaultdict(list)
+        # for s in strs:
+        #     count = [0] * 26
+        #     for c in s:
+        #         count[ord(c) - ord('a')] += 1
+        #     ans[tuple(count)].append(s)
+        # return ans.values()        
         
+
         
         # dd = defaultdict(list)
         # for s in strs:
