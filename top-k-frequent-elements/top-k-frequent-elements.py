@@ -1,13 +1,32 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        # Bucket Sort-Like, O(N) time and space
+        buckets = [[] for xx in range(len(nums))]
         counts = Counter(nums)
+        for num, count in counts.items():
+            buckets[count - 1].append(num)
         
-        count_ls = [(-values, keys) for keys, values in counts.items()]
+        ret_ls = []
+        for bucket in buckets:
+            for val in bucket:
+                ret_ls.append(val)
+        return ret_ls[-k:]
+            
         
-        heapq.heapify(count_ls)
         
-        ret = []
         
-        for _ in range(k):
-            ret.append(heapq.heappop(count_ls)[1])
-        return ret
+        
+        
+        
+#         #O(KlogN) time and O(N) space, where K == k, N == |nums|
+#         counts = Counter(nums)
+        
+#         count_ls = [(-values, keys) for keys, values in counts.items()]
+        
+#         heapq.heapify(count_ls)
+        
+#         ret = []
+        
+#         for _ in range(k):
+#             ret.append(heapq.heappop(count_ls)[1])
+#         return ret
