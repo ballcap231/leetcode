@@ -12,21 +12,13 @@ class Solution:
                 ret_ls.append(val)
         return ret_ls[-k:]
             
-        
-        
-        
-        
-        
-        
+#         #Heap
 #         #O(KlogN) time and O(N) space, where K == k, N == |nums|
 #         counts = Counter(nums)
-        
 #         count_ls = [(-values, keys) for keys, values in counts.items()]
-        
 #         heapq.heapify(count_ls)
-        
 #         ret = []
-        
+
 #         for _ in range(k):
 #             ret.append(heapq.heappop(count_ls)[1])
 #         return ret
