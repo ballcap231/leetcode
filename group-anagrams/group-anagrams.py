@@ -2,6 +2,7 @@ from collections import defaultdict
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         # #Bucket Sort on ASCII values
+        # #No sorting necessary as sorting happens by using relative positions of bucket lists
         # #O(N * K) time where N == |strs|, K == length of words ins strs
         # #O(N * K) space
         # dd = defaultdict(list)
